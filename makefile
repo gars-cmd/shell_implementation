@@ -1,6 +1,6 @@
 FLAG = -Wall -g
 
-all: main.o server server.o shell 
+all: main.o command.o server server.o shell 
 
 main.o: main.c 
 	gcc $(FLAG) -c main.c

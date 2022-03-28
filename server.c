@@ -15,8 +15,6 @@ int main(void) {
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(1234);
-    int check = 1;
-    while(1){
     bind(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     
     // 3. Listen for connections with the listen() system call
@@ -28,7 +26,7 @@ int main(void) {
     int acc_sock = accept(sock, (struct sockaddr *)&cli_addr, &cli_addrlen);
 
 
-
+int check = 1;
     while (check==1)
 {
 
@@ -39,13 +37,10 @@ int main(void) {
     // Read from socket, write to stdout
     nread = read(acc_sock, buf, 1024);
     int cmp = strcmp(buf , "out");
-    printf("out == %s and cmp == %d \n ",buf,cmp);
     if (cmp == 10)
     {
         check = 0;
     }
-    
     write(1, buf, nread);
-}
 }
 }

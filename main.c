@@ -52,7 +52,6 @@ int main(int argc , char const *argv[]){
         {
             system("echo local");
             dup2(output,STDOUT_FILENO);
-            
             close(output);
             int c_s = close(sock);
             if (c_s != 0)
@@ -61,13 +60,19 @@ int main(int argc , char const *argv[]){
             }
             
         }
+        else if (strcmp(firstWord(command , 4),"copy") == 0 && strlen(command)>5)
+        {
+            copyTxt(command);
+        }
+        else if (strcmp(firstWord(command , 6),"delete") == 0 && strlen(command)>7)
+        {
+            delete_file(command);
+        }
         else
         {
+            printf("\nanother command that is -%s-\n",command);
             system(command);
-        }
-        
-        
-        
+        } 
     }
     return 0 ;
 }
